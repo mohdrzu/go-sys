@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"log"
 	"net/http"
 
@@ -9,13 +8,16 @@ import (
 	"peerac/go-sys/utils"
 
 	"github.com/gin-gonic/gin"
-	"github.com/shirou/gopsutil/cpu"
 	"github.com/shirou/gopsutil/host"
 	"github.com/shirou/gopsutil/mem"
 )
 
 func main() {
 	r := gin.Default()
+
+	// Static file
+	r.Static("/assets", "./assets")
+	r.LoadHTMLGlob("views/*.html")
 
 	r.GET("/", SysInfoHandler)
 
@@ -37,40 +39,24 @@ func SysInfoHandler(c *gin.Context) {
 		Architecture:    hostInfo.KernelArch,
 	}
 
-	// Get CPU information
-	cpuInfo, _ := cpu.Info()
-	var cpus []model.CPU
-	for _, v := range cpuInfo {
-		cpuData := model.CPU{
-			CpuNumber:  v.CPU,
-			VendorID:   v.VendorID,
-			Cores:      v.Cores,
-			ModelName:  v.ModelName,
-			ClockSpeed: v.Mhz,
-		}
-
-		cpus = append(cpus, cpuData)
-	}
-
 	// Get memory Information
 	memInfo, _ := mem.VirtualMemory()
 	memData := model.RAM{
 		Total:       utils.HumanFileSize(float64(memInfo.Total)),
 		Available:   utils.HumanFileSize(float64(memInfo.Available)),
 		Used:        utils.HumanFileSize(float64(memInfo.Used)),
-		UsedPercent: fmt.Sprintf("%v %%", memInfo.UsedPercent),
+		UsedPercent: memInfo.UsedPercent,
 		Free:        utils.HumanFileSize(float64(memInfo.Free)),
 	}
 
 	// Populate response
 	finalResponse := model.InfoResponse{
-		Processors: cpus,
-		Machine:    hostData,
-		Memory:     memData,
+		Machine: hostData,
+		Memory:  memData,
 	}
 
 	// Return response
-	c.JSON(http.StatusOK, gin.H{
+	c.HTML(http.StatusOK, "index", gin.H{
 		"data": finalResponse,
 	})
 }

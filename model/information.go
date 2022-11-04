@@ -20,7 +20,7 @@ type RAM struct {
 	Total       string
 	Available   string
 	Used        string
-	UsedPercent string
+	UsedPercent float64
 	Free        string
 }
 

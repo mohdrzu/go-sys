@@ -1,0 +1,30 @@
+{{ define "index" }}
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>GO-Sys</title>
+        <link rel="stylesheet" href="../assets/css/index.css">
+    </head>
+    <body>
+    <h1> Go-Sys </h1>
+    <div>
+        <label for="file"><h2>Memory Usage</h2></label>
+        <p>Total Memory {{ .data.Memory.Total}}</p>
+        <p>Used Memory {{ .data.Memory.Used}}</p>
+        <p>Available Memory {{ .data.Memory.Available}}</p>
+    </div>
+    <br />
+    <br />
+    <div>
+        <label for="file"><h2>System Information</h2></label>
+        <p>OS {{ .data.Machine.OS}}</p>
+        <p>Platform {{ .data.Machine.Platform}}</p>
+        <p>Platform Version {{ .data.Machine.PlatformVersion}}</p>
+        <p>Kernel Version {{ .data.Machine.KernelVersion}}</p>
+        <p>Architecture {{ .data.Machine.Architecture}}</p>
+    </div>
+
+    </body>
+    </html>
+{{ end }}
