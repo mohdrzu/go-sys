@@ -35,32 +35,3 @@ ENTRYPOINT ["/app/binary"]
 # Jadi khusus statement ENTRYPOINT ini pada contoh di atas adalah yang efeknya baru kelihatan ketika Image di-run ke container.
 # Sewaktu proses build aplikasi ke Image maka efeknya belum terlihat.
 # Dengan statement tersebut nantinya sewaktu container jalan, maka executable binary dari aplikasi akan dijalankan di container sebagai entrypoint.
-
-# Build the image
-# docker build -t go-sys-image . # flag -t digunakan untuk menentukan nama imaga
-
-# Buat container baru berbasis image yang sudah kita buat.
-# docker container create --name go-sys-container -p 8080:9000 go-sys-image
-
-# Check container dengan
-# docker container ls -a
-
-# Start the container
-# docker container start my-container-hello-world
-# docker container ls
-
-# Stop Container
-# Untuk stop container bisa dengan command docker container stop <nama-container-atau-container-id>.
-
-#docker container stop my-container-hello-world
-# docker container ls
-
-# Hapus Container
-# Untuk hapus container bisa dengan command docker container rm <nama-container-atau-container-id>.
-# docker container rm my-container-hello-world
-# docker container ls
-
-# Hapus Image
-# Untuk hapus image bisa dengan command docker image rm <nama-image-atau-image-id>. O iya, untuk penghapusan image, harus dipastikan terlebih dahulu tidak ada container yang running menggunakan basis image yang ingin dihapus.
-# docker image rm my-image-hello-world
-# docker images
