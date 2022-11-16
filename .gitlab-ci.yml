@@ -1,6 +1,6 @@
 run_tests:
   image: golang:1.18-alpine3.15
   before_script:
-    - apt-get update
+    - apk update
   script:
     - go test -v .\utils\
