@@ -3,4 +3,4 @@ run_tests:
   before_script:
     - go mod tidy
   script:
-    - go test -v .\utils\
+    - go test -v
