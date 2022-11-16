@@ -1,4 +1,4 @@
-FROM golang:alpine
+FROM golang:latest
 # Keyword FROM ini digunakan untuk inisialisasi build stage dan juga menentukan basis Image yang digunakan.
 # Informasi golang:alpine di sini adalah basis image yang dimaksud, yaitu image bernama golang.
 # Tag bernama alpine yang tersedia di laman officila Docker Hub Golang https://hub.docker.com/_/golang.
