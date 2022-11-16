@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"net/http"
 
@@ -41,6 +42,10 @@ func SysInfoHandler(c *gin.Context) {
 
 	// Get memory Information
 	memInfo, _ := mem.VirtualMemory()
+	fmt.Println(memInfo.Total)
+	fmt.Println(memInfo.Available)
+	fmt.Println(memInfo.Used)
+
 	memData := model.RAM{
 		Total:       utils.HumanFileSize(float64(memInfo.Total)),
 		Available:   utils.HumanFileSize(float64(memInfo.Available)),
