@@ -1,5 +1,5 @@
 run_tests:
-  image: golang:alpine
+  image: golang:latest
   before_script:
     - go mod tidy
   script:
