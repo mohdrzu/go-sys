@@ -2,7 +2,12 @@ variables:
   IMAGE_NAME: muhammadrz/go-sys
   IMAGE_TAG: gosys-app-1.0
 
+stages:
+  - test
+  - build
+
 run_tests:
+  stage: test
   image: golang:latest
   before_script:
     - go mod tidy
@@ -10,6 +15,7 @@ run_tests:
     - go test -v
 
 build_image:
+  stage: build
   image: docker:20.10.16
   services:
     - docker:20.10.16-dind
