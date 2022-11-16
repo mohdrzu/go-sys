@@ -5,13 +5,6 @@ FROM golang:latest
 # Dalam Image golang:alpine sudah tersedia beberapa utilitas untuk keperluan build aplikasi Golang.
 # Image golang:alpine basisnya adalah Alpine OS.
 
-RUN apk update && apk add --no-cache git
-# Keyword RUN digunakan untuk menjalankan shell comamnd.
-# Argument setelahnya, yaitu apk update && apk add --no-cache git akan dijalankan di Image golang:alpine yang sudah di-set sebelumnya.
-# Command tersebut merupakan command Alpine OS yang kurang lebih gunanya adalah berikut:
-# 1. Command apk update digunakan untuk meng-update index packages pada OS.
-# 2. Command apk add --no-cache git digunakan untuk meng-install Git. Karena iamge golang:alpine by default, GIT berlum tersedia.adalah tidak tersedia.
-
 WORKDIR /app
 # Digunakan untuk menentukan working directory yang pada konteks ini adalah /app.
 # Statement ini menjadikan semua statement RUN di bawahnya akan dieksekusi pada working directory.
