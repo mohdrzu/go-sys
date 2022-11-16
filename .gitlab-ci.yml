@@ -1,4 +1,6 @@
 run_tests:
   image: golang:alpine
+  before_script:
+    - go mod tidy
   script:
     - go test -v .\utils\
